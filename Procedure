@@ -1,0 +1,60 @@
+a step-by-step guide to setting up a LAN-to-WAN connection using Cisco Packet Tracer:
+Equipment and Connections
+
+1. Devices Needed:
+   - 2 Routers 
+   - 2 Switches 
+   - 10 Computers 
+
+2. Connections:
+   - LAN1 Setup:
+     - Connect Router 1 (R1) to Switch 1 (S1) using a straight-through Ethernet cable.
+     - Connect PC1 to PC5 to Switch 1 (S1) using straight-through Ethernet cables.
+
+   - LAN2 Setup:
+     - Connect Router 2 (R2) to Switch 2 (S2) using a straight-through Ethernet cable.
+     - Connect PC6 to PC10 to Switch 2 (S2) using straight-through Ethernet cables.
+
+   - WAN Setup:
+     - Connect Router 1 (R1) to Router 2 (R2) using a crossover Ethernet cable.
+
+ Configuration Steps
+
+1. Router Configuration:
+
+   - Router 1 (R1):
+     - LAN Interface: Configure this interface to use IP addresses in the range of 192.168.1.x with a subnet mask of 255.255.255.0.
+     - WAN Interface: Configure this interface with an IP address, such as 10.0.0.1, and subnet mask 255.255.255.252.
+
+   - Router 2 (R2):
+     - LAN Interface: Configure this interface to use IP addresses in the range of 192.168.2.x with a subnet mask of 255.255.255.0.
+     - WAN Interface: Configure this interface with an IP address, such as 10.0.0.2, and subnet mask 255.255.255.252.
+
+2. Routing Configuration:
+
+   - Router 1 (R1):
+     - Add a static route so that Router 1 knows how to reach the network of Router 2 (192.168.2.0/24) through the WAN link to Router 2 (10.0.0.2).
+
+   - Router 2 (R2):
+     - Add a static route so that Router 2 knows how to reach the network of Router 1 (192.168.1.0/24) through the WAN link to Router 1 (10.0.0.1).
+
+3. PC Configuration:
+
+   - For LAN1 (PC1-PC5):
+     - Assign IP addresses in the range of 192.0.0.2 to 192.0.0.6, with the subnet mask 255.255.255.0.
+     - Set the default gateway to 192.0.0.1 (Router 1's LAN interface IP).
+
+   - For LAN2 (PC6-PC10):
+     - Assign IP addresses in the range of 192.0.0.2 to 192.0.0.6, with the subnet mask 255.255.255.0.
+     - Set the default gateway to 192.0.0.1 (Router 2's LAN interface IP).
+
+Verification
+
+1. Testing Connectivity:
+   - From any PC in LAN1 (e.g., PC1), try to ping a PC in LAN2 (e.g., PC6) to ensure that the WAN connection is correctly routing traffic between the two LANs.
+   - Similarly, try pinging from a PC in LAN2 to a PC in LAN1 to confirm bidirectional communication.
+
+2. Check Routing:
+   - On both routers, ensure the routing tables are updated and that they have the correct routes to each other's LAN networks.
+
+This setup creates two separate LANs connected via a WAN, allowing communication between devices on different LANs through the routers.
